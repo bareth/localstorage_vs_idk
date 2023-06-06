@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
       var choice = choices[i];
       if (choice.checked) {
         var label = document.querySelector('label[for=' + choice.id + ']').innerHTML;
-        return {value: choice.value, label: label};
+        return { value: choice.value, label: label };
       }
     }
   }
@@ -66,6 +66,8 @@ document.addEventListener("DOMContentLoaded", function () {
     var dbTypeChoice = getChoice('db');
     var numDocsChoice = getChoice('numDocs');
     var numDocs = parseInt(numDocsChoice.value, 10);
+    var docSizeChoice = getChoice('docSize');
+    var docSize = parseInt(docSizeChoice.value, 10);
     var useWorker = getChoice('worker').value === 'true';
     var cloneWorker = getChoice('worker').value === 'clone';
     display.innerHTML = 'Inserting ' + numDocs + ' docs using ' +
@@ -77,7 +79,8 @@ document.addEventListener("DOMContentLoaded", function () {
         return workerPromise({
           action: 'test',
           dbType: dbTypeChoice.value,
-          numDocs: numDocs
+          numDocs: numDocs,
+          docSize: docSize,
         }).then(function (e) {
           if (!e.data.success) {
             throw new Error('did not work');
@@ -88,7 +91,8 @@ document.addEventListener("DOMContentLoaded", function () {
         return workerPromise({
           action: 'test',
           dbType: dbTypeChoice.value,
-          numDocs: tester.createDocs(numDocs)
+          numDocs: tester.createDocs(numDocs),
+          docSize: docSize,
         }).then(function (e) {
           if (!e.data.success) {
             throw new Error('did not work');
@@ -99,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
       var fun = tester.getTest(dbTypeChoice.value);
 
       return Promise.resolve().then(function () {
-        return fun(numDocs);
+        return fun({ numDocs, docSize });
       }).then(function () {
         return Date.now() - startTime;
       });

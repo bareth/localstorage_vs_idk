@@ -1,122 +1,188 @@
 <html>
-<head>
-  <title>Browser database comparison</title>
-  <link rel="stylesheet" href="index.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-<h1>Browser database comparison</h1>
+  <head>
+    <title>Browser database comparison</title>
+    <link rel="stylesheet" href="index.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <h1>Browser database comparison</h1>
 
-<div style="display:inline-block">
-  <img src="kirby.gif"/>
-  <h4>Animated GIF</h4>
-</div>
-<div style="display:inline-block">
-  <img class="spin-js" src="kirby.png"/>
-  <h4>JS animation</h4>
-</div>
+    <div style="display: inline-block">
+      <img src="kirby.gif" />
+      <h4>Animated GIF</h4>
+    </div>
+    <div style="display: inline-block">
+      <img class="spin-js" src="kirby.png" />
+      <h4>JS animation</h4>
+    </div>
 
-<div>
-  <h4>Database</h4>
+    <div>
+      <h4>Database</h4>
 
-  <div style="display:inline-block;">
-    <input type="radio" name="db" id="dbMemory" value="regularObject"
-           checked="checked"/>
-    <label for="dbMemory">Regular object</label>
-    <br/>
-    <input type="radio" name="db" id="dbMemMap" value="map"
-           checked="checked"/>
-    <label for="dbMemMap">ES6 Map</label>
-    <br/>
-    <input type="radio" name="db" id="dbMemSet" value="set"
-           checked="checked"/>
-    <label for="dbMemSet">ES6 Set</label>
-    <br/>
-    <input type="radio" name="db" id="dbLocalStorage" value="localStorage"/>
-    <label for="dbLocalStorage">LocalStorage</label>
-    <br/>
-    <input type="radio" name="db" id="idb" value="idb"/>
-    <label for="idb">IndexedDB</label>
-    <br/>
-    <input type="radio" name="db" id="webSQL" value="webSQL"/>
-    <label for="webSQL">WebSQL</label>
-  </div>
-  <div style="display:inline-block;">
-    <input type="radio" name="db" id="dbLoki" value="loki"/>
-    <label for="dbLoki">LokiJS</label>
-    <br/>
-    <input type="radio" name="db" id="dbPouch" value="pouch"/>
-    <label for="dbPouch">PouchDB</label>
-    <br/>
-    <input type="radio" name="db" id="dbPouchWebSQL" value="pouchWebSQL"/>
-    <label for="dbPouchWebSQL">PouchDB (WebSQL)</label>
-    <br/>
-    <input type="radio" name="db" id="dbLocalForage" value="localForage"/>
-    <label for="dbLocalForage">LocalForage</label>
-    <br/>
-    <input type="radio" name="db" id="dbLocalForageWebSQL"
-           value="localForageWebSQL"/>
-    <label for="dbLocalForageWebSQL">LocalForage (WebSQL)</label>
-    <br/>
-    <input type="radio" name="db" id="dbDexie" value="dexie"/>
-    <label for="dbDexie">Dexie</label>
+      <div style="display: inline-block">
+        <input
+          type="radio"
+          name="db"
+          id="dbMemory"
+          value="regularObject"
+          checked="checked"
+        />
+        <label for="dbMemory">Regular object</label>
+        <br />
+        <input
+          type="radio"
+          name="db"
+          id="dbMemMap"
+          value="map"
+          checked="checked"
+        />
+        <label for="dbMemMap">ES6 Map</label>
+        <br />
+        <input
+          type="radio"
+          name="db"
+          id="dbMemSet"
+          value="set"
+          checked="checked"
+        />
+        <label for="dbMemSet">ES6 Set</label>
+        <br />
+        <input
+          type="radio"
+          name="db"
+          id="dbLocalStorage"
+          value="localStorage"
+        />
+        <label for="dbLocalStorage">LocalStorage</label>
+        <br />
+        <input type="radio" name="db" id="idb" value="idb" />
+        <label for="idb">IndexedDB</label>
+        <br />
+        <input type="radio" name="db" id="webSQL" value="webSQL" />
+        <label for="webSQL">WebSQL</label>
+      </div>
+      <div style="display: inline-block">
+        <input type="radio" name="db" id="dbLoki" value="loki" />
+        <label for="dbLoki">LokiJS</label>
+        <br />
+        <input type="radio" name="db" id="dbPouch" value="pouch" />
+        <label for="dbPouch">PouchDB</label>
+        <br />
+        <input type="radio" name="db" id="dbPouchWebSQL" value="pouchWebSQL" />
+        <label for="dbPouchWebSQL">PouchDB (WebSQL)</label>
+        <br />
+        <input type="radio" name="db" id="dbLocalForage" value="localForage" />
+        <label for="dbLocalForage">LocalForage</label>
+        <br />
+        <input
+          type="radio"
+          name="db"
+          id="dbLocalForageWebSQL"
+          value="localForageWebSQL"
+        />
+        <label for="dbLocalForageWebSQL">LocalForage (WebSQL)</label>
+        <br />
+        <input type="radio" name="db" id="dbDexie" value="dexie" />
+        <label for="dbDexie">Dexie</label>
+      </div>
+    </div>
 
-  </div>
-</div>
+    <div>
+      <div style="display: inline-block; vertical-align: top">
+        <h4>Number of docs</h4>
+        <input
+          type="radio"
+          name="numDocs"
+          id="docs_1"
+          value="1"
+          checked="checked"
+        />
+        <label for="docs_1">1</label>
+        <br />
+        <input type="radio" name="numDocs" id="docs_1000" value="1000" />
+        <label for="docs_1000">1000</label>
+        <br />
+        <input type="radio" name="numDocs" id="docs_10000" value="10000" />
+        <label for="docs_10000">10000</label>
+        <br />
+        <input type="radio" name="numDocs" id="docs_100000" value="100000" />
+        <label for="docs_100000">100000</label>
+      </div>
+      <div
+        style="display: inline-block; vertical-align: top; margin-left: 20px"
+      >
+        <h4>Doc size</h4>
+        <input
+          type="radio"
+          name="docSize"
+          id="size_default"
+          value="0"
+          checked="checked"
+        />
+        <label for="size_default">Default</label>
+        <br />
+        <input type="radio" name="docSize" id="size_1mb" value="1" />
+        <label for="size_1mb">1Mb</label>
+        <br />
+        <input type="radio" name="docSize" id="size_2mb" value="2" />
+        <label for="size_2mb">2Mb</label>
+        <br />
+        <input type="radio" name="docSize" id="size_3mb" value="3" />
+        <label for="size_3mb">3Mb</label>
+        <br />
+        <input type="radio" name="docSize" id="size_4mb" value="4" />
+        <label for="size_4mb">4Mb</label>
+        <br />
+        <input type="radio" name="docSize" id="size_5mb" value="5" />
+        <label for="size_5mb">5Mb</label>
+      </div>
+      <div
+        style="display: inline-block; vertical-align: top; margin-left: 20px"
+      >
+        <h4>Environment</h4>
+        <input
+          type="radio"
+          name="worker"
+          id="workerNo"
+          value="false"
+          checked="checked"
+        />
+        <label for="workerNo">Normal</label>
+        <br />
+        <input type="radio" name="worker" id="workerYes" value="true" />
+        <label for="workerYes">Web worker</label>
+        <br />
+        <input type="radio" name="worker" id="workerClone" value="clone" />
+        <label for="workerClone">Web worker w/ cloned data</label>
+      </div>
+    </div>
 
-<div>
-  <div style="display:inline-block;vertical-align:top;">
-    <h4>Number of docs</h4>
-    <input type="radio" name="numDocs" id="docs_1000" value="1000"
-           checked="checked"/>
-    <label for="docs_1000">1000</label>
-    <br/>
-    <input type="radio" name="numDocs" id="docs_10000" value="10000"/>
-    <label for="docs_10000">10000</label>
-    <br/>
-    <input type="radio" name="numDocs" id="docs_100000" value="100000"/>
-    <label for="docs_100000">100000</label>
-  </div>
-  <div style="display:inline-block;vertical-align:top;margin-left:20px;">
-    <h4>Environment</h4>
-    <input type="radio" name="worker" id="workerNo" value="false"
-           checked="checked"/>
-    <label for="workerNo">Normal</label>
-    <br/>
-    <input type="radio" name="worker" id="workerYes" value="true"/>
-    <label for="workerYes">Web worker</label>
-    <br/>
-    <input type="radio" name="worker" id="workerClone" value="clone"/>
-    <label for="workerClone">Web worker w/ cloned data</label>
-  </div>
-</div>
+    <div>
+      <button type="button" id="insertButton">Insert docs</button>
+      <button type="button" id="deleteButton">Clear all</button>
+    </div>
 
-<div>
-  <button type="button" id="insertButton">Insert docs</button>
-  <button type="button" id="deleteButton">Clear all</button>
-</div>
+    <pre id="display"></pre>
 
-<pre id="display"></pre>
+    <script src="node_modules/lie/dist/lie.polyfill.min.js"></script>
+    <script src="node_modules/dexie/dist/latest/Dexie.min.js"></script>
+    <script src="node_modules/pouchdb/dist/pouchdb.min.js"></script>
+    <script src="node_modules/localforage/dist/localforage.min.js"></script>
+    <script src="node_modules/lokijs/build/lokijs.min.js"></script>
+    <script src="tester.js"></script>
+    <script src="index.js"></script>
+    <script>
+      var kirbyPng = document.getElementsByClassName("spin-js")[0];
 
-<script src="node_modules/lie/dist/lie.polyfill.min.js"></script>
-<script src="node_modules/dexie/dist/latest/Dexie.min.js"></script>
-<script src="node_modules/pouchdb/dist/pouchdb.min.js"></script>
-<script src="node_modules/localforage/dist/localforage.min.js"></script>
-<script src="node_modules/lokijs/build/lokijs.min.js"></script>
-<script src="tester.js"></script>
-<script src="index.js"></script>
-<script>
-  var kirbyPng = document.getElementsByClassName('spin-js')[0];
-
-  var rotate = 0;
-  setInterval(function () {
-    rotate -= 5;
-    if (rotate === 360) {
-      rotate = 0;
-    }
-    kirbyPng.style.transform = 'rotate(' + rotate + 'deg)';
-    kirbyPng.style.webkitTransform = 'rotate(' + rotate + 'deg)';
-  }, 14);
-</script>
-</body>
+      var rotate = 0;
+      setInterval(function () {
+        rotate -= 5;
+        if (rotate === 360) {
+          rotate = 0;
+        }
+        kirbyPng.style.transform = "rotate(" + rotate + "deg)";
+        kirbyPng.style.webkitTransform = "rotate(" + rotate + "deg)";
+      }, 14);
+    </script>
+  </body>
 </html>

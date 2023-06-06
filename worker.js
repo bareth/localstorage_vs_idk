@@ -12,6 +12,7 @@ self.addEventListener('message', function (e) {
   var dbType = e.data.dbType;
   var numDocs = e.data.numDocs;
   var action = e.data.action;
+  var docSize = e.data.docSize;
 
   if (action === 'cleanup') {
     return tester.cleanup().then(function () {
@@ -25,7 +26,7 @@ self.addEventListener('message', function (e) {
   var test = tester.getTest(dbType);
 
   Promise.resolve().then(function () {
-    return test(numDocs);
+    return test({ numDocs, docSize });
   }).then(function () {
     self.postMessage({ success: true });
   }).catch(function (e) {

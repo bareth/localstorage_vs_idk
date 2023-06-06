@@ -1,11 +1,11 @@
 function createTester() {
   'use strict';
-
+  var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   var pouch = new PouchDB('pouch_test');
-  var pouchWebSQL = new PouchDB('pouch_test_websql', {adapter: 'websql'});
-  var lokiDB = new loki.Collection('loki_test', {indices: ['id']});
+  var pouchWebSQL = new PouchDB('pouch_test_websql', { adapter: 'websql' });
+  var lokiDB = new loki.Collection('loki_test', { indices: ['id'] });
   var dexieDB = new Dexie('dexie_test');
-  dexieDB.version(1).stores({docs: '++,id'});
+  dexieDB.version(1).stores({ docs: '++,id' });
   dexieDB.open();
   var openIndexedDBReq;
   var webSQLDB;
@@ -22,15 +22,29 @@ function createTester() {
     });
   }
 
-  function createDoc() {
+  function generateString(length) {
+    let result = ' ';
+    const charactersLength = characters.length;
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+
+    return result;
+  }
+  function createDoc(docSize) {
+    if (docSize) {
+      return {
+        data: generateString(1024 * 1024 * docSize)
+      }
+    }
     return {
       data: Math.random()
     };
   }
-  function createDocs(numDocs) {
+  function createDocs({ numDocs, docSize }) {
     var docs = new Array(numDocs);
     for (var i = 0; i < numDocs; i++) {
-      docs[i] = createDoc();
+      docs[i] = createDoc(docSize);
     }
     return docs;
   }
@@ -150,7 +164,7 @@ function createTester() {
         req.onerror = reject;
         req.onupgradeneeded = function (e) {
           var db = e.target.result;
-          db.createObjectStore('docs', {keyPath: 'id'});
+          db.createObjectStore('docs', { keyPath: 'id' });
         };
         req.onsuccess = function (e) {
           var db = e.target.result;
@@ -193,8 +207,8 @@ function createTester() {
             var doc = docs[i];
             txn.executeSql(
               'insert or replace into docs (id, json) values (?, ?);', [
-                id, JSON.stringify(doc)
-              ]);
+              id, JSON.stringify(doc)
+            ]);
           }
         }, reject, resolve);
       });
@@ -203,12 +217,12 @@ function createTester() {
   function getTest(db) {
     var fun = _getTest(db);
     return test;
-    function test(arg) {
-      if (typeof arg === 'number') {
-        var docs = createDocs(arg);
+    function test({ numDocs, docSize }) {
+      if (typeof numDocs === 'number') {
+        var docs = createDocs({ numDocs, docSize });
         return fun(docs);
       } else {
-        return fun(arg);
+        return fun(numDocs);
       }
     }
   }
@@ -278,13 +292,13 @@ function createTester() {
       }),
       Promise.resolve().then(function () {
         if (typeof openDatabase !== 'undefined' &&
-            typeof localforage !== 'undefined') {
+          typeof localforage !== 'undefined') {
           return localForageWebSQLDB.clear();
         }
       }),
       dexieDB.delete().then(function () {
         dexieDB = new Dexie('dexie_test');
-        dexieDB.version(1).stores({ docs: '++,id'});
+        dexieDB.version(1).stores({ docs: '++,id' });
         dexieDB.open();
       }),
       pouch.destroy().then(function () {
@@ -295,7 +309,7 @@ function createTester() {
           return Promise.resolve();
         }
         return pouchWebSQL.destroy().then(function () {
-          pouchWebSQL = new PouchDB('pouch_test_websql', {adapter: 'websql'});
+          pouchWebSQL = new PouchDB('pouch_test_websql', { adapter: 'websql' });
         });
       })
     ];
