@@ -1,3 +1,4 @@
+var bigData = makeBigData()
 function createTester() {
   'use strict';
   var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -33,9 +34,7 @@ function createTester() {
   }
   function createDoc(docSize) {
     if (docSize) {
-      return {
-        data: generateString(1024 * 1024 * docSize)
-      }
+      return JSON.stringify(bigData)
     }
     return {
       data: Math.random()
