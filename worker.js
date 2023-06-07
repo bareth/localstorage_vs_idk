@@ -1,10 +1,4 @@
-importScripts(
-  'node_modules/lie/dist/lie.polyfill.min.js',
-  'node_modules/dexie/dist/latest/Dexie.min.js',
-  'node_modules/pouchdb/dist/pouchdb.min.js',
-  'node_modules/lokijs/build/lokijs.min.js',
-  'tester.js'
-);
+importScripts('tester.js');
 
 var tester = createTester();
 
