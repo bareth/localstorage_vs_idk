@@ -3,8 +3,6 @@ function createTester() {
   'use strict';
   var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   var openIndexedDBReq;
-  var localForageDB;
-  var localForageWebSQLDB;
 
   function generateString(length) {
     let result = ' ';
