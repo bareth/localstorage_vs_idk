@@ -18,75 +18,21 @@
 
     <div>
       <h4>Database</h4>
-
       <div style="display: inline-block">
-        <input
-          type="radio"
-          name="db"
-          id="dbMemory"
-          value="regularObject"
-          checked="checked"
-        />
-        <label for="dbMemory">Regular object</label>
-        <br />
-        <input
-          type="radio"
-          name="db"
-          id="dbMemMap"
-          value="map"
-          checked="checked"
-        />
-        <label for="dbMemMap">ES6 Map</label>
-        <br />
-        <input
-          type="radio"
-          name="db"
-          id="dbMemSet"
-          value="set"
-          checked="checked"
-        />
-        <label for="dbMemSet">ES6 Set</label>
-        <br />
         <input
           type="radio"
           name="db"
           id="dbLocalStorage"
           value="localStorage"
+          checked="checked"
         />
         <label for="dbLocalStorage">LocalStorage</label>
         <br />
         <input type="radio" name="db" id="idb" value="idb" />
         <label for="idb">IndexedDB</label>
         <br />
-        <input type="radio" name="db" id="webSQL" value="webSQL" />
-        <label for="webSQL">WebSQL</label>
-      </div>
-      <div style="display: inline-block">
-        <input type="radio" name="db" id="dbLoki" value="loki" />
-        <label for="dbLoki">LokiJS</label>
-        <br />
-        <input type="radio" name="db" id="dbPouch" value="pouch" />
-        <label for="dbPouch">PouchDB</label>
-        <br />
-        <input type="radio" name="db" id="dbPouchWebSQL" value="pouchWebSQL" />
-        <label for="dbPouchWebSQL">PouchDB (WebSQL)</label>
-        <br />
-        <input type="radio" name="db" id="dbLocalForage" value="localForage" />
-        <label for="dbLocalForage">LocalForage</label>
-        <br />
-        <input
-          type="radio"
-          name="db"
-          id="dbLocalForageWebSQL"
-          value="localForageWebSQL"
-        />
-        <label for="dbLocalForageWebSQL">LocalForage (WebSQL)</label>
-        <br />
-        <input type="radio" name="db" id="dbDexie" value="dexie" />
-        <label for="dbDexie">Dexie</label>
       </div>
     </div>
-
     <div>
       <div style="display: inline-block; vertical-align: top">
         <h4>Number of docs</h4>
@@ -107,6 +53,10 @@
         <br />
         <input type="radio" name="numDocs" id="docs_100000" value="100000" />
         <label for="docs_100000">100000</label>
+        <p>
+          Use only <b>1</b> doc number <br />if you are going to use
+          <br />different doc size than default.
+        </p>
       </div>
       <div
         style="display: inline-block; vertical-align: top; margin-left: 20px"
@@ -135,6 +85,9 @@
         <br />
         <input type="radio" name="docSize" id="size_5mb" value="5" />
         <label for="size_5mb">5Mb</label>
+        <br />
+        <input type="radio" name="docSize" id="size_ins" value="6" />
+        <label for="size_ins">Inspection's data instance (500Kb)</label>
       </div>
       <div
         style="display: inline-block; vertical-align: top; margin-left: 20px"
@@ -151,9 +104,6 @@
         <br />
         <input type="radio" name="worker" id="workerYes" value="true" />
         <label for="workerYes">Web worker</label>
-        <br />
-        <input type="radio" name="worker" id="workerClone" value="clone" />
-        <label for="workerClone">Web worker w/ cloned data</label>
       </div>
     </div>
 
@@ -163,12 +113,7 @@
     </div>
 
     <pre id="display"></pre>
-
-    <script src="node_modules/lie/dist/lie.polyfill.min.js"></script>
-    <script src="node_modules/dexie/dist/latest/Dexie.min.js"></script>
-    <script src="node_modules/pouchdb/dist/pouchdb.min.js"></script>
-    <script src="node_modules/localforage/dist/localforage.min.js"></script>
-    <script src="node_modules/lokijs/build/lokijs.min.js"></script>
+    <script src="data.js"></script>
     <script src="tester.js"></script>
     <script src="index.js"></script>
     <script>

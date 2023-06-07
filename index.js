@@ -69,7 +69,6 @@ document.addEventListener("DOMContentLoaded", function () {
     var docSizeChoice = getChoice('docSize');
     var docSize = parseInt(docSizeChoice.value, 10);
     var useWorker = getChoice('worker').value === 'true';
-    var cloneWorker = getChoice('worker').value === 'clone';
     display.innerHTML = 'Inserting ' + numDocs + ' docs using ' +
       dbTypeChoice.label + (useWorker ? ' in a worker' : '') + '...';
 
@@ -87,19 +86,8 @@ document.addEventListener("DOMContentLoaded", function () {
           }
           return Date.now() - startTime;
         });
-      } else if (cloneWorker) {
-        return workerPromise({
-          action: 'test',
-          dbType: dbTypeChoice.value,
-          numDocs: tester.createDocs(numDocs),
-          docSize: docSize,
-        }).then(function (e) {
-          if (!e.data.success) {
-            throw new Error('did not work');
-          }
-          return Date.now() - startTime;
-        });
       }
+
       var fun = tester.getTest(dbTypeChoice.value);
 
       return Promise.resolve().then(function () {
